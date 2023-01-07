@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Dado from "./dado";
+
+import { useState } from "react";
 
 function App() {
+
+  function generarValor() {
+    return Math.trunc(Math.random() * 6) + 1
+  }
+
+  function tirar() {
+    setNumero1(generarValor())
+    setNumero2(generarValor())
+    setNumero3(generarValor())
+  }
+
+  const [numero1, setNumero1] = useState(generarValor())
+  const [numero2, setNumero2] = useState(generarValor())
+  const [numero3, setNumero3] = useState(generarValor())
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Dado valor={numero1} />
+      <Dado valor={numero2} />
+      <Dado valor={numero3} />
+      <button onClick={tirar}>Tirar</button>
     </div>
   );
 }
